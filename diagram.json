@@ -1,0 +1,46 @@
+{
+    "version": 1,
+    "author": "Daffa Arya S.P",
+    "editor": "wokwi",
+    "parts": [
+      { "type": "wokwi-arduino-uno", "id": "uno", "top": 77.4, "left": 47.4, "attrs": {} },
+      { "type": "wokwi-hc-sr04", "id": "ultrasonic1", "top": -132.9, "left": 207.1, "attrs": {} },
+      {
+        "type": "wokwi-led",
+        "id": "led1",
+        "top": -166.8,
+        "left": 13.4,
+        "attrs": { "color": "green" }
+      },
+      { "type": "wokwi-led", "id": "led2", "top": -166.8, "left": 71, "attrs": { "color": "red" } },
+      {
+        "type": "wokwi-resistor",
+        "id": "r1",
+        "top": -63.8,
+        "left": 8.75,
+        "rotate": 270,
+        "attrs": { "value": "1000" }
+      },
+      {
+        "type": "wokwi-resistor",
+        "id": "r2",
+        "top": -63.8,
+        "left": 66.35,
+        "rotate": 270,
+        "attrs": { "value": "1000" }
+      }
+    ],
+    "connections": [
+      [ "ultrasonic1:ECHO", "uno:1", "blue", [ "v0" ] ],
+      [ "ultrasonic1:TRIG", "uno:2", "orange", [ "v0" ] ],
+      [ "ultrasonic1:GND", "uno:GND.3", "black", [ "v48", "h37.2", "v288", "h-124.8" ] ],
+      [ "ultrasonic1:VCC", "uno:5V", "red", [ "v28.8", "h105.6", "v355.2", "h9.6" ] ],
+      [ "led2:C", "uno:GND.1", "black", [ "v153.6", "h77.2" ] ],
+      [ "led1:C", "uno:GND.1", "black", [ "v172.8", "h134.8" ] ],
+      [ "led1:A", "r1:2", "green", [ "v0" ] ],
+      [ "r1:1", "uno:7", "green", [ "h0", "v38.4", "h201.6" ] ],
+      [ "led2:A", "r2:2", "#8f4814", [ "v0" ] ],
+      [ "r2:1", "uno:6", "#8f4814", [ "h0", "v19.2", "h153.6" ] ]
+    ],
+    "dependencies": {}
+  }
