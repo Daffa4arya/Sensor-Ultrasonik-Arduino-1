@@ -1,18 +1,38 @@
 #include <Arduino.h>
 
-// put function declarations here:
-int myFunction(int, int);
+const int echoPin = 2;
+const int trigPin = 3;
+const int ledMerahPin = 6;
+const int ledHijauPin = 7;
 
 void setup() {
-  // put your setup code here, to run once:
-  int result = myFunction(2, 3);
+  Serial.begin(9600);
+  pinMode(echoPin, INPUT);
+  pinMode(trigPin, OUTPUT);
+  pinMode(ledHijauPin, OUTPUT);
+  pinMode(ledMerahPin, OUTPUT);
 }
 
+float ultrasonik() {
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+  int durasiPantulan = pulseIn(echoPin, HIGH);
+  return durasiPantulan * 0.034 / 2;
+
+}
 void loop() {
-  // put your main code here, to run repeatedly:
-}
-
-// put function definitions here:
-int myFunction(int x, int y) {
-  return x + y;
+  float jarak = ultrasonik();
+  if (jarak >= 10) {
+    digitalWrite(ledHijauPin, HIGH);
+    digitalWrite(ledMerahPin, LOW);
+    Serial.println("Tidak ada objek");
+  } else {
+    digitalWrite(ledHijauPin, LOW);
+    digitalWrite(ledMerahPin, HIGH);
+    Serial.println("Ada objek");
+  }
+  delay(1000);
 }
